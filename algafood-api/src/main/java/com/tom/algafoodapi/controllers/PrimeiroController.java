@@ -10,6 +10,7 @@ public class PrimeiroController {
 
     @GetMapping(value = "/hello")
     public String helloWorld(){
+        System.out.println("Teste_devTools  EDITED TOW");
         return "Hello World!!!";
     }
     
