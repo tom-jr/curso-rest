@@ -41,7 +41,7 @@ Ele é instanciado pelo Spring na inicialização do servidor e fica pronto para
  implementação da interface como Bean. Porém, isso ocorre apenas no caso de uma única implementação existir. Caso contrario 
  é necessário configurar qual implementação sera utilizada na injeção da interface.
 
-![Exemplo](/docs/resources/img/injecao_iterface.png)
+<img src="https://github.com/tom-jr/curso-rest/blob/main/algafood-api/docs/resources/img/injecao_iterface.png?raw=true" style ="width:700px;">
 
             
 ## @Configuration e @ Bean
