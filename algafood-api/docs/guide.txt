@@ -2,4 +2,7 @@ commit mod1-001 - criando projetos e alguns comando mavaen
 
 commit mod1-002 - criando primeiro Controller e explicando sobre annotations RestController RequestMapping
 
-commit mod1-003 - adição do devtools no projeto para live reload do projeto sem precisar restarta o projeto
+commit mod1-003 - adição do devtools no projeto para live reload do projeto sem precisar restarta o projeto.
+Entrando no assunto de Injeção de dependencias. Explicando sobre @Component, @Configurations e @Bean
+
+
