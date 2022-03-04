@@ -11,3 +11,5 @@ Entrando no assunto de Injeção de dependências. Explicando sobre @Component, 
 [commit mod1-005](/algafood-api/docs/module-01/arq-05.md) - Parâmetro require de @Autowired
 
 [commit mod1-006](/algafood-api/docs/module-01/arq-06.md) - Ambiguidade de beans
+
+[commit mod1-007](/docs/module-01/arq-07.md) - Spring Profiles
