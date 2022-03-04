@@ -1,4 +1,4 @@
-#Ambiguidade de beans e injeção de lista de beans
+# Ambiguidade de beans e injeção de lista de beans
   Quando um Bean é uma interface e existe duas ou mais instanciações a injeção da interface em
 qualquer class não saberá qual das implementações do Bean utilizar em sua injeção esta aconteci-
 mento se trata de uma ambiguidade e gera um erro de compilação ao subir o serviço WEB. 
