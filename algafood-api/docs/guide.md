@@ -6,5 +6,6 @@
 Entrando no assunto de Injeção de dependências. Explicando sobre @Component, @Configurations e @Bean
 
 
-[commit mod-004](/docs/module-01/arq-04.md) - Explicação sobre os pontos de injeção de uma dependência
+[commit mod1-004](/docs/module-01/arq-04.md) - Explicação sobre os pontos de injeção de uma dependência
 
+[commit mod1-005](/docs/module-01/arq-05.md) - Parâmetro require de @Autowired
