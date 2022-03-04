@@ -3,7 +3,7 @@
 qualquer class não saberá qual das implementações do Bean utilizar em sua injeção esta aconteci-
 mento se trata de uma ambiguidade e gera um erro de compilação ao subir o serviço WEB. 
 
-![alt](/docs/resources/img/ex_ambiguidade_01.png)
+![alt](/algafood-api/docs/resources/img/ex_ambiguidade_01.png)
 
 
 Formas de se tratar a ambiguidade:
@@ -12,13 +12,13 @@ Formas de se tratar a ambiguidade:
 remos com uma lista de objetos que implementam a interface Bean. Então adicionando a regra que
 desejar.
 
-![alt](/docs/resources/img/ex_ambiguidade_02.png)
+![alt](/algafood-api/docs/resources/img/ex_ambiguidade_02.png)
 
 * Desambiguizada com a annotation **@Primary**. 
 Com o primary na class que implementa o Bean adicionando a annotation @Primary o Spring 
 container dará prioridade em instanciar esse implementação sempre.
 
-![alt](/docs/resources/img/ex_ambiguidade_03.png)
+![alt](/algafood-api/docs/resources/img/ex_ambiguidade_03.png)
 
 
 * Desambiguação com @Qualifier
@@ -26,7 +26,7 @@ container dará prioridade em instanciar esse implementação sempre.
  lizar uma injeção da interface basta anotar o atributo com o @Qualifier com o Alias que deseja
  utilizar na injeção.
 
- ![alt](/docs/resources/img/ex_ambiguidade_04.png)
+ ![alt](/algafood-api/docs/resources/img/ex_ambiguidade_04.png)
 
  Outra forma de se utilizar o Qualifier é usando anotação customizada.
  Criando uma Enumeração com enums que representam a implementação a ser selecionada
@@ -92,4 +92,4 @@ public class Generic{
 
 Diagrama da estrutura:
 
-![](/docs/resources/img/ex_ambiguidade_05.png)
+![](/algafood-api/docs/resources/img/ex_ambiguidade_05.png)
