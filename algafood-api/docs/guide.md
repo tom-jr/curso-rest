@@ -9,3 +9,5 @@ Entrando no assunto de Injeção de dependências. Explicando sobre @Component, 
 [commit mod1-004](/docs/module-01/arq-04.md) - Explicação sobre os pontos de injeção de uma dependência
 
 [commit mod1-005](/docs/module-01/arq-05.md) - Parâmetro require de @Autowired
+
+[commit mod1-006](/docs/module-01/arq-06.md) - Ambiguidade de beans
