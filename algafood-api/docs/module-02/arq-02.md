@@ -14,7 +14,7 @@ Coluna           | Atributo
 |                | Método
 Chave estrangeira| Associação 
 
-![mapeamento-class](algafood-api/docs/resources/img/ex_mapeamento_OR.png)
+![mapeamento-class](/algafood-api/docs/resources/img/ex_mapeamento_OR.png)
 
 
 ## Persistência com ORM
