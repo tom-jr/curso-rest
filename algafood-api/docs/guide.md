@@ -28,4 +28,4 @@ adicionar métodos nos ciclos de vida de um Bean.
 
 [commit mod2-001](/algafood-api/docs/module-02/arq-01.md) - O que é JPA e Hibernate
 
-[commit mod2-002](/docs/module-02/arq-02.md) - Adicionando JPA e configurando o Data Source
+[commit mod2-002](/algafood-api/docs/module-02/arq-02.md) - Adicionando JPA e configurando o Data Source
