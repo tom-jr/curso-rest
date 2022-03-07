@@ -18,3 +18,7 @@ Entrando no assunto de Injeção de dependências. Explicando sobre @Component, 
 adicionar métodos nos ciclos de vida de um Bean.
 
 [commit mod1-009](/algafood-api/docs/module-01/arq-09.md) - Publicando e consumindo eventos
+
+[commit mod1-010](/algafood-api/docs/module-01/arq-10.md) - Configurando projeto com **application.properties**
+
+
