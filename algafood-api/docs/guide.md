@@ -16,3 +16,5 @@ Entrando no assunto de Injeção de dependências. Explicando sobre @Component, 
 
 [commit mod1-008](/algafood-api/docs/module-01/arq-08.md) - Ciclo de vida Bean. Possibilita 
 adicionar métodos nos ciclos de vida de um Bean.
+
+[commit mod1-009](/algafood-api/docs/module-01/arq-09.md) - Publicando e consumindo eventos
