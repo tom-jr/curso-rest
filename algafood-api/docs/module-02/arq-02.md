@@ -18,14 +18,15 @@ Adicionada a dependência o projeto subirá apenas apos a configuração de um b
 Adicionamos as configurações de conexão com banco de dados no arquivo de application.properties
 
 ~~~ properties
-spring.jpa.hibernate.ddl-auto=create
-spring.datasource.url=jdbc:postgresql://localhost:5432/database-name
-spring.datasource.username=user
-spring.datasource.password=password
+spring.datasource.url=jdbc:postgresql://localhost:5432/algafood
+spring.datasource.username=postgres
+spring.datasource.password=admin
 
 spring.jpa.database-platform = org.hibernate.dialect.PostgreSQL10Dialect
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=create
 
 ~~~
 
