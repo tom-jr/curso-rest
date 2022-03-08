@@ -34,4 +34,6 @@ adicionar métodos nos ciclos de vida de um Bean.
 
 [commit mod2-004](/algafood-api/docs/module-02/arq-04.md) - Importando dados de teste com import.sql
 
+[commit mod2-004](/algafood-api/docs/module-02/arq-05.md) - Realizar CRUD no banco de dados com EntityManager
+
 
