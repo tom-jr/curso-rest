@@ -40,3 +40,8 @@ adicionar métodos nos ciclos de vida de um Bean.
 
 [commit mod2-007](/algafood-api/docs/module-02/arq-07.md) - Relacionamento ManyToOne e annotations
 Column, JoinColum e o nullable
+
+
+# Mod003 Rest com Spring
+
+[commit mod3-001](/docs/module-03/arq-01.md) - Content negotiation para Json ou XML
