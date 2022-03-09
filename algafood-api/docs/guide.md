@@ -50,7 +50,8 @@ Column, JoinColum e o nullable
 
 # Mod004 Spring Data JPA
 
-[commit mod4-001](/docs/module-04/arq-01.md) - Consultas JPQL (JAVA PERSISTENCE QUERY LANGUAGE)
+[commit mod4-001](/algafood-api/docs/module-04/arq-01.md) - Consultas JPQL (JAVA PERSISTENCE QUERY LANGUAGE)
 
+[commit mod4-002](/algafood-api/docs/module-04/arq-02.md) - JPQL Sintaxe
 
 
