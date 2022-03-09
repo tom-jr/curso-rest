@@ -44,4 +44,6 @@ Column, JoinColum e o nullable
 
 # Mod003 Rest com Spring
 
-[commit mod3-001](/docs/module-03/arq-01.md) - Content negotiation para Json ou XML
+[commit mod3-001](/algafood-api/docs/module-03/arq-01.md) - Content negotiation para Json ou XML
+
+[commit mod3-002](/algafood-api/docs/module-03/arq-02.md) - Métodos HTTP Spring
