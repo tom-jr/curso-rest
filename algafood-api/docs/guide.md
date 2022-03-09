@@ -47,3 +47,10 @@ Column, JoinColum e o nullable
 [commit mod3-001](/algafood-api/docs/module-03/arq-01.md) - Content negotiation para Json ou XML
 
 [commit mod3-002](/algafood-api/docs/module-03/arq-02.md) - Métodos HTTP Spring
+
+# Mod004 Spring Data JPA
+
+[commit mod4-001](/docs/module-04/arq-01.md) - Consultas JPQL (JAVA PERSISTENCE QUERY LANGUAGE)
+
+
+
