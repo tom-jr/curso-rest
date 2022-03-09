@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<heimer-mind-map version="3.2.0">
+ <color r="186" b="182" g="189"/>
+ <edge-color r="0" b="0" g="0"/>
+ <grid-color r="160" b="164" g="160"/>
+ <edge-width>2000</edge-width>
+ <font-family italic="0" overline="0" underline="0" bold="0" strike-out="0" weight="50">Sans Serif</font-family>
+ <text-size>11000</text-size>
+ <corner-radius>5000</corner-radius>
+ <graph>
+  <node index="2" h="82000" x="-39585" y="120840" w="200000">
+   <text>@Component
+EntidadeRepository{
+}</text>
+   <color r="115" b="22" g="210"/>
+   <text-color r="0" b="0" g="0"/>
+  </node>
+  <node index="0" h="100000" x="-35461" y="-328226" w="200000">
+   <text>@RestController
+EntidadeController{
+
+}</text>
+   <color r="115" b="22" g="210"/>
+   <text-color r="0" b="0" g="0"/>
+  </node>
+  <node index="1" h="82000" x="-37110" y="-91929" w="200000">
+   <text>@Service
+EntidadeService{
+}</text>
+   <color r="115" b="22" g="210"/>
+   <text-color r="0" b="0" g="0"/>
+  </node>
+  <edge index1="1" index0="2" arrow-mode="0">
+   <text>inject</text>
+  </edge>
+  <edge index1="0" index0="1" arrow-mode="0">
+   <text>inject </text>
+  </edge>
+ </graph>
+ <layout-optimizer min-edge-length="100000" aspect-ratio="1000"/>
+</heimer-mind-map>
