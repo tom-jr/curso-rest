@@ -54,4 +54,7 @@ Column, JoinColum e o nullable
 
 [commit mod4-002](/algafood-api/docs/module-04/arq-02.md) - JPQL Sintaxe
 
+[commit mod4-003](/docs/module-04/arq-03.md) - JPQL exemplos códigos
+
+
 
