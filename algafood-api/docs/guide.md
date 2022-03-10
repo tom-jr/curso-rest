@@ -60,4 +60,8 @@ Column, JoinColum e o nullable
 
 [commit mod4-005](/algafood-api/docs/module-04/arq-05.md) - Exemplo consultaJPQL dinâmica em classe de Implementação.
 
+[commit mod4-006](/algafood-api/docs/module-04/arq-06.md) - Exemplos Consultas com CriteriaAPI do ***javax.persistence***
+
+
+
 
