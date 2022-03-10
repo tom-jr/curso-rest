@@ -58,3 +58,6 @@ Column, JoinColum e o nullable
 
 [commit mod4-004](/algafood-api/docs/module-04/arq-04.md) - Consultas com Query methods
 
+[commit mod4-005](/algafood-api/docs/module-04/arq-05.md) - Exemplo consultaJPQL dinâmica em classe de Implementação.
+
+
