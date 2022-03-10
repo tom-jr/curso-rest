@@ -56,5 +56,4 @@ Column, JoinColum e o nullable
 
 [commit mod4-003](/algafood-api/docs/module-04/arq-03.md) - JPQL exemplos códigos
 
-
-
+[commit mod4-004](/algafood-api/docs/module-04/arq-04.md) - Consultas com Query methods

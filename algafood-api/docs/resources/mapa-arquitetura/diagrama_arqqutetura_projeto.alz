@@ -8,11 +8,13 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node index="2" h="82000" x="-39585" y="120840" w="200000">
-   <text>@Component
-EntidadeRepository{
+  <node index="2" h="118000" x="-39585" y="120840" w="518000">
+   <text>
+EntidadeRepository extends JpaRepository&lt;Entidade,TypeKey>{
+
+
 }</text>
-   <color r="115" b="22" g="210"/>
+   <color r="114" b="207" g="159"/>
    <text-color r="0" b="0" g="0"/>
   </node>
   <node index="0" h="100000" x="-35461" y="-328226" w="200000">
