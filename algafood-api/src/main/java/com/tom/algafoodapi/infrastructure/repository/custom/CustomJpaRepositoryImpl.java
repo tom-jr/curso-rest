@@ -1,4 +1,4 @@
-package com.tom.algafoodapi.domain.infrastructure.repository.custom;
+package com.tom.algafoodapi.infrastructure.repository.custom;
 
 import java.util.Optional;
 

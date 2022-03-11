@@ -8,13 +8,10 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node index="2" h="118000" x="-39585" y="120840" w="518000">
-   <text>
-EntidadeRepository extends JpaRepository&lt;Entidade,TypeKey>{
-
-
-}</text>
-   <color r="114" b="207" g="159"/>
+  <node index="6" h="75000" x="-38233" y="437495" w="632000">
+   <text>@NoRepositoryBean
+interface CustomJpaRepositoryImpl&lt;T, ID> extends SimpleJpaRepository&lt;T,ID></text>
+   <color r="115" b="22" g="210"/>
    <text-color r="0" b="0" g="0"/>
   </node>
   <node index="0" h="100000" x="-35461" y="-328226" w="200000">
@@ -25,6 +22,14 @@ EntidadeController{
    <color r="115" b="22" g="210"/>
    <text-color r="0" b="0" g="0"/>
   </node>
+  <node index="2" h="100000" x="-36320" y="121928" w="575000">
+   <text>
+EntidadeRepository extends CustomJpaRepository&lt;Entidade,TypeKey>{
+
+}</text>
+   <color r="114" b="207" g="159"/>
+   <text-color r="0" b="0" g="0"/>
+  </node>
   <node index="1" h="82000" x="-37110" y="-91929" w="200000">
    <text>@Service
 EntidadeService{
@@ -32,11 +37,40 @@ EntidadeService{
    <color r="115" b="22" g="210"/>
    <text-color r="0" b="0" g="0"/>
   </node>
+  <node index="3" h="82000" x="556069" y="121878" w="363000">
+   <text>public interface EntidadeRepositoryCustom{
+
+}</text>
+   <color r="114" b="207" g="159"/>
+   <text-color r="0" b="0" g="0"/>
+  </node>
+  <node index="4" h="82000" x="556069" y="310136" w="335000">
+   <text>class EntidadeRepositoryImpl 
+implements EntidadeRepositoryCustom{
+}</text>
+   <color r="115" b="22" g="210"/>
+   <text-color r="0" b="0" g="0"/>
+  </node>
+  <node index="5" h="75000" x="-37592" y="295791" w="548000">
+   <text>@NoRepositoryBean
+interface CustomJpaRepository&lt;T, ID> extends JpaRepository&lt;T,ID></text>
+   <color r="114" b="207" g="159"/>
+   <text-color r="0" b="0" g="0"/>
+  </node>
+  <edge index1="5" index0="2" arrow-mode="0">
+   <text>extends</text>
+  </edge>
   <edge index1="1" index0="2" arrow-mode="0">
    <text>inject</text>
   </edge>
+  <edge index1="3" index0="2" arrow-mode="0">
+   <text>extends</text>
+  </edge>
   <edge index1="0" index0="1" arrow-mode="0">
    <text>inject </text>
+  </edge>
+  <edge index1="3" index0="4" arrow-mode="0">
+   <text>implements</text>
   </edge>
  </graph>
  <layout-optimizer min-edge-length="100000" aspect-ratio="1000"/>
