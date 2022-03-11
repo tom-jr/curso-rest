@@ -3,6 +3,7 @@ package com.tom.algafoodapi.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.tom.algafoodapi.common.utils.StringUtils;
 import com.tom.algafoodapi.domain.model.Restaurante;
 import com.tom.algafoodapi.services.RestauranteService;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -34,7 +34,7 @@ public class RestauranteController {
     
         Optional<Restaurante> restaurante = this.restauranteService.getRestauranteRepository().findById(restauranteId);
         if(restaurante.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(String.format("Restaurante com id: %d não existe", restauranteId));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(StringUtils.entityNotExist(restauranteId, Restaurante.class.getSimpleName()));
         }
         return ResponseEntity.ok(restaurante);
     }
