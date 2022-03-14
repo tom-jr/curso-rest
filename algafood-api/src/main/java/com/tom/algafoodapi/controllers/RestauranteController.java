@@ -7,6 +7,7 @@ import com.tom.algafoodapi.common.utils.StringUtils;
 import com.tom.algafoodapi.domain.model.Cozinha;
 import com.tom.algafoodapi.domain.model.Restaurante;
 import com.tom.algafoodapi.infrastructure.dto.RestauranteDTO;
+import com.tom.algafoodapi.infrastructure.specs.RestauranteSpecs;
 import com.tom.algafoodapi.services.CozinhaService;
 import com.tom.algafoodapi.services.RestauranteService;
 
@@ -100,4 +101,8 @@ public class RestauranteController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @GetMapping(value = "/spec")
+    public ResponseEntity<?> withFreeShip(){
+        return ResponseEntity.ok(this.restauranteService.getRepository().findAllWithFreeShip());
+    }
 }

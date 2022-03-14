@@ -64,6 +64,7 @@ Column, JoinColum e o nullable
 
 [commit mod4-007](/algafood-api/docs/module-04/arq-07.md) - Camada de abstração de Repositório
 
+[commit mod4-008](/algafood-api/docs/module-04/arq-08.md) - Criando uma fabrica de specifications
 
 
 
