@@ -62,6 +62,10 @@ Column, JoinColum e o nullable
 
 [commit mod4-006](/algafood-api/docs/module-04/arq-06.md) - Exemplos Consultas com CriteriaAPI do ***javax.persistence***
 
+[commit mod4-007](/algafood-api/docs/module-04/arq-07.md) - Camada de abstração de Repositório
+
+
+
 
 
 
