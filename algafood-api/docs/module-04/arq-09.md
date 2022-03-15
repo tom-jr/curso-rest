@@ -94,3 +94,18 @@ private EntityEmbeddable entityEmbeddable;
 
 
 ~~~
+
+## Data
+
+Uma explicação breve sobre como adicionar
+dataCriação e Atualização
+~~~java
+
+ @Column(nullable = false)
+    @CreationTimestamp //adiciona a data automaticamente ao criar entidade
+    private LocalDateTime dataCriacao;
+
+    @Column(nullable = false)
+    @UpdateTimestamp // sempre que passar por uma atualização na persistência atualiza a data
+    private LocalDateTime dataAtualizacao;
+~~~

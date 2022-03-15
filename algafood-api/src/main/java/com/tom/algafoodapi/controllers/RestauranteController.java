@@ -80,7 +80,7 @@ public class RestauranteController {
                     .body(StringUtils.entityNotExist(dto.getCozinha().getId(), Cozinha.class.getSimpleName()));
         }
 
-        BeanUtils.copyProperties(dto, restaurante.get(), "id","formasPagamento","endereco");
+        BeanUtils.copyProperties(dto, restaurante.get(), "id","formasPagamento","endereco","produtos");
         BeanUtils.copyProperties(dto.getCozinha(), cozinha.get(), "id");
 
         restaurante.get().setCozinha(cozinha.get());

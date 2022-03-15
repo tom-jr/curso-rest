@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -50,22 +51,20 @@ public class Restaurante {
     @UpdateTimestamp
     private LocalDateTime dataAtualizacao;
 
-
     // constructor
-    
-        public Restaurante(Long id, String nome, BigDecimal taxaFrete, LocalDateTime dataCriacao,
-                LocalDateTime dataAtualizacao, Endereco endereco, Cozinha cozinha) {
-            this.id = id;
-            this.nome = nome;
-            this.taxaFrete = taxaFrete;
-            this.dataCriacao = dataCriacao;
-            this.dataAtualizacao = dataAtualizacao;
-            this.endereco = endereco;
-            this.cozinha = cozinha;
-        }
 
-    //embedded
+    public Restaurante(Long id, String nome, BigDecimal taxaFrete, LocalDateTime dataCriacao,
+            LocalDateTime dataAtualizacao, Endereco endereco, Cozinha cozinha) {
+        this.id = id;
+        this.nome = nome;
+        this.taxaFrete = taxaFrete;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
+        this.endereco = endereco;
+        this.cozinha = cozinha;
+    }
 
+    // embedded
 
     @JsonIgnore
     @Embedded
@@ -80,5 +79,10 @@ public class Restaurante {
     @ManyToMany
     @JoinTable(name = "restaurante_forma_pagamento", joinColumns = @JoinColumn(name = "restaurante_id"), inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))
     private List<FormaPagamento> formasPagamento = new ArrayList<>();
+
+    // @JsonIgnore
+    @OneToMany(mappedBy = "restaurante")
+    @JsonIgnore
+    private List<Produto> produtos = new ArrayList<>();
 
 }
