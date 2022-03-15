@@ -1,10 +1,12 @@
 package com.tom.algafoodapi;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import com.tom.algafoodapi.domain.model.Cidade;
 import com.tom.algafoodapi.domain.model.Cozinha;
+import com.tom.algafoodapi.domain.model.Endereco;
 import com.tom.algafoodapi.domain.model.Estado;
 import com.tom.algafoodapi.domain.model.FormaPagamento;
 import com.tom.algafoodapi.domain.model.Permissao;
@@ -36,12 +38,6 @@ public class AlgafoodApiApplication implements CommandLineRunner {
 		Cozinha cozinha02 = new Cozinha(null, "Indiana");
 		this.allInjects.getCozinhaRepository().saveAll(Arrays.asList(cozinha01, cozinha02));
 
-		Restaurante restaurante01 = new Restaurante(null, "Thai Gourmet", new BigDecimal("10"), cozinha01);
-		Restaurante restaurante02 = new Restaurante(null, "Thai Delivery", new BigDecimal("9.50"), cozinha01);
-		Restaurante restaurante03 = new Restaurante(null, "Tuk Tuk Comida Indiana", new BigDecimal("15"), cozinha02);
-
-		this.allInjects.getRestauranteRepository().saveAll(Arrays.asList(restaurante01, restaurante02, restaurante03));
-
 		Estado estado01 = new Estado(null, "Minas Gerais");
 		Estado estado02 = new Estado(null, "São Paulo");
 		Estado estado03 = new Estado(null, "Ceará");
@@ -56,12 +52,28 @@ public class AlgafoodApiApplication implements CommandLineRunner {
 
 		allInjects.getCidadeRepository().saveAll(Arrays.asList(cidade01, cidade02, cidade03, cidade04, cidade05));
 
+		Endereco endereco01 = new Endereco("38400-999", "Rua João, Pinheiro", "1000", "complemento", "Centro", cidade01);
+
+		LocalDateTime now = LocalDateTime.now();
+
+		Restaurante restaurante01 = new Restaurante(null, "Thai Gourmet", new BigDecimal("10"), now, now, endereco01, cozinha01);
+		Restaurante restaurante02 = new Restaurante(null, "Thai Delivery", new BigDecimal("9.50"), now, now, endereco01, cozinha01);
+		Restaurante restaurante03 = new Restaurante(null, "Tuk Tuk Comida Indiana", new BigDecimal("15"), now, now, endereco01, cozinha02);
+		restaurante01.setEndereco(endereco01);
+
+		this.allInjects.getRestauranteRepository().saveAll(Arrays.asList(restaurante01, restaurante02, restaurante03));
+
 		FormaPagamento formaPagamento01 = new FormaPagamento(null, "Cartão de crédito");
 		FormaPagamento formaPagamento02 = new FormaPagamento(null, "Cartão de débito");
 		FormaPagamento formaPagamento03 = new FormaPagamento(null, "Dinheiro");
 
+		restaurante01.setFormasPagamento(Arrays.asList(formaPagamento01, formaPagamento02, formaPagamento03));
+		restaurante02.setFormasPagamento(Arrays.asList(formaPagamento03));
+		restaurante03.setFormasPagamento(Arrays.asList(formaPagamento02, formaPagamento03));
+
 		allInjects.getFormaPagamentoRepository()
 				.saveAll(Arrays.asList(formaPagamento01, formaPagamento02, formaPagamento03));
+		this.allInjects.getRestauranteRepository().saveAll(Arrays.asList(restaurante01, restaurante02, restaurante03));
 
 		Permissao permissao01 = new Permissao(null, "CONSULTAR_COZINHAS", "Permite consultar cozinhas");
 		Permissao permissao02 = new Permissao(null, "EDITAR_COZINHAS", "Permite editar cozinhas");

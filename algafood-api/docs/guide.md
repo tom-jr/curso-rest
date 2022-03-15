@@ -66,6 +66,9 @@ Column, JoinColum e o nullable
 
 [commit mod4-008](/algafood-api/docs/module-04/arq-08.md) - Criando uma fabrica de specifications
 
+[commit mod4-009](/algafood-api/docs/module-04/arq-09.md) - Relacionamentos entre entidades
+
+
 
 
 

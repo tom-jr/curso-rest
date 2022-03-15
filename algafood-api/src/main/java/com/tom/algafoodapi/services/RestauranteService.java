@@ -1,5 +1,6 @@
 package com.tom.algafoodapi.services;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import com.tom.algafoodapi.domain.model.Cozinha;
@@ -27,7 +28,7 @@ public class RestauranteService {
             throw new Exception();
         }
 
-        Restaurante restaurante = new Restaurante(null, dto.getNome(), dto.getTaxaFrete(), cozinha.get());
+        Restaurante restaurante = new Restaurante(null, dto.getNome(), dto.getTaxaFrete(), LocalDateTime.now(), LocalDateTime.now(), null, cozinha.get());
         return restaurante;
     }
 
