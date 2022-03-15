@@ -22,7 +22,7 @@ JPA. Ele faz as conexões defaults do Pool para a API.
 
 1. Abrimos o pgadmin4 e selecionamos o banco de dados da API
 
-![pg1](/docs/resources/img/ex_pgadmin_01.png)
+![pg1](/algafood-api/docs/resources/img/ex_pgadmin_01.png)
 
 2. O dashboard é apresentado assim que clicamos então na sessão de Server 
 activity na aba Sessions vemos todas as conexões abertas pelo Hikari.
@@ -30,7 +30,7 @@ Notar que apenas uma esta em uso, que se trata da sessão do pgadmin4. As demais
 estão em status de ***idle***, que significa que estão em espera para serem 
 aproveitada para qualquer requisição que vinhe.
 
-![pg1](/docs/resources/img/ex_pgadmin_02.png)
+![pg1](/algafood-api/docs/resources/img/ex_pgadmin_02.png)
 
 
  Podemos utilizar o comando do apache serve para realizar múltiplas requisições
@@ -39,7 +39,7 @@ aproveitada para qualquer requisição que vinhe.
  ~~~
  Assim vemos as conexões mudar de ***idle*** para idle-in-transaction
 
-![pg1](/docs/resources/img/ex_pgadmin_03.png)
+![pg1](/algafood-api/docs/resources/img/ex_pgadmin_03.png)
 
 
 
