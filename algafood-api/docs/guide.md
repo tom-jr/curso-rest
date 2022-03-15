@@ -69,6 +69,12 @@ Column, JoinColum e o nullable
 [commit mod4-009](/algafood-api/docs/module-04/arq-09.md) - Relacionamentos entre entidades
 
 
+# Mod003 Pool Conexões e Flyaway
+
+[commit mod5-001](/docs/module-05/arq-01.md) - Entendendo Pool
+
+
+
 
 
 

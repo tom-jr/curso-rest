@@ -1,7 +1,5 @@
 package com.tom.algafoodapi.domain.model;
 
-import static org.mockito.ArgumentMatchers.nullable;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,7 @@ public class Usuario {
     private String senha;
     
     @CreationTimestamp
-    @Column(nullable = false, columnDefinition = "datetime")
+    @Column(nullable = false)
     private LocalDateTime dataCadastro;
     
     @ManyToMany
