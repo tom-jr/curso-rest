@@ -1,8 +1,8 @@
 package com.tom.algafoodapi.domain.model;
 
+
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,37 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
-public class Produto {
-
+public class ItemPedido {
+    
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(nullable = false)
-    private String nome;
+    private BigDecimal precoUnitario;
+    private BigDecimal precoTotal;
+    private Integer quantidade;
+    private String observacao;
 
-    @Column(nullable = false)
-    private String descricao;
+    //relations
 
-    @Column(nullable = false)
-    private BigDecimal preco;
-
-    @Column(nullable = false)
-    private Boolean ativo;
-
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Restaurante restaurante;
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Produto produto;
+
 }

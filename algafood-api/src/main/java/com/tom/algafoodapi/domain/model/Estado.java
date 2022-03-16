@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Estado {
 
@@ -26,4 +24,11 @@ public class Estado {
 
     @Column(nullable = false)
     private String nome;
+
+    //constructor
+    
+    public Estado(Long id, String nome){
+        this.id = id;
+        this.nome = nome;
+    }
 }

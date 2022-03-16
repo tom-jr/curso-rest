@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -16,8 +15,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@AllArgsConstructor
 @NoArgsConstructor
+
 public class Cidade {
 
     @EqualsAndHashCode.Include
@@ -32,5 +31,11 @@ public class Cidade {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Estado estado;
+
+    public Cidade(Long id, String nome,Estado estado){
+        this.id = id;
+        this.nome = nome;
+        this.estado = estado;
+    }
 
 }

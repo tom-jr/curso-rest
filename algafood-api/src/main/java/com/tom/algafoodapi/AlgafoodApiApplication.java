@@ -1,21 +1,8 @@
 package com.tom.algafoodapi;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-
-import com.tom.algafoodapi.domain.model.Cidade;
-import com.tom.algafoodapi.domain.model.Cozinha;
-import com.tom.algafoodapi.domain.model.Endereco;
-import com.tom.algafoodapi.domain.model.Estado;
-import com.tom.algafoodapi.domain.model.FormaPagamento;
-import com.tom.algafoodapi.domain.model.Permissao;
-import com.tom.algafoodapi.domain.model.Produto;
-import com.tom.algafoodapi.domain.model.Restaurante;
 import com.tom.algafoodapi.infrastructure.repository.custom.CustomJpaRepositoryImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
