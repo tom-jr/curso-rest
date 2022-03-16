@@ -34,11 +34,6 @@ public class Cozinha {
     private String nome;
 
 
-    //constructor    
-    public Cozinha(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
 
     //relations
 

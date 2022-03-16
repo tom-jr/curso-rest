@@ -33,4 +33,27 @@ arquivos de migrations
 Padrão de nomenclatura do arquivo deve ser com ***'V'*** maniáculo. Caso contrario
 não se é lido.
 
+## Gerar DDL com Spring
 
+No ***application.properties*** podemos adicionar a configuração
+***spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create***
+***spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=src/main/resources/db/ddl-jpa/ddl.sql***
+
+
+A primeira configuration ativa a criação do DDL que é criado pelas anotações
+do JPA. A segunda informa o caminho onde salvar o DDL.
+Caso a configuração permanecer toda vez que se subir a aplicação sera gerando o DDL.
+
+## Configuration do Flyaway
+  O arquivo deve se chamar flyway.properties
+
+~~~ properties
+flyway.url=  #o value é a url de conexão ao banco de dados
+flyway.user= #username banco de dados
+flyway.password= #password do username do banco de dados
+~~~
+Comando para rodar um repair do flyway. Para remover scripts que não rodaram com sucesso na migração
+
+~~~ bash
+./mvn flyway:repair -Dflyway.configFiles={dir-do-profile/flyway.properties}
+~~~
