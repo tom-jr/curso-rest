@@ -33,7 +33,9 @@ public class Pedido {
     private Long id;
 
     private BigDecimal subtotal;
+
     private BigDecimal taxaFrete;
+
     private BigDecimal valorTotal;
 
     @Embedded
@@ -45,7 +47,9 @@ public class Pedido {
     private LocalDateTime dataCriacao;
 
     private LocalDateTime dataConfirmacao;
+
     private LocalDateTime dataCancelamento;
+    
     private LocalDateTime dataEntrega;
 
     @ManyToOne
