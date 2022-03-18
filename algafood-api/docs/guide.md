@@ -77,6 +77,11 @@ Column, JoinColum e o nullable
 
 [commit mod5-003](/algafood-api/docs/module-05/arq-03.md) - adição de dados para testes com Flyaway
 
+# Mod004 Tratamento e Modelagem de erro
+
+[commit mod6-001](/docs/module-0/arq-01.md) - Anotação ResponseStatus
+
+
 
 
 

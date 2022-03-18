@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -62,19 +63,9 @@ public class CozinhaController {
     }
 
     @DeleteMapping(value = "/{cozinhaId}")
-    public ResponseEntity<?> delete(@PathVariable Long cozinhaId) {
-        Optional<Cozinha> cozinha = this.cozinhaService.getRepository().findById(cozinhaId);
-        if (cozinha.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName()));
-        }
-        try {
-            this.cozinhaService.getRepository().delete(cozinha.get());
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (Exception e) {
-            // TODO: handle exception
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(StringUtils.entityViculate(Cozinha.class.getSimpleName()));
-        }
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long cozinhaId) {
+      
+        this.cozinhaService.delete(cozinhaId);
     }
 }

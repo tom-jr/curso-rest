@@ -78,7 +78,7 @@ public class EstadoController {
         } catch (Exception e) {
             // TODO: handle exception
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(StringUtils.entityViculate(Estado.class.getSimpleName()));
+                    .body(StringUtils.entityLinked(Estado.class.getSimpleName()));
         }
     }
 }
