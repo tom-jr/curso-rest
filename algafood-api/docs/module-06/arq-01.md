@@ -51,7 +51,7 @@ public void delete(Long entityId) {
             throw new EntidadeNaoEncontradaException(
                     StringUtils.entityNotExist(entityId, entity.class.getSimpleName()));
         } catch (DataIntegrityViolationException e) {
-            throw new EntidadeEmUsoException(StringUtils.entityLinked(entity.class.getSimpleName()));
+            throw new EntidadeInUseException(StringUtils.entityLinked(entity.class.getSimpleName()));
         }
     }
 ~~~

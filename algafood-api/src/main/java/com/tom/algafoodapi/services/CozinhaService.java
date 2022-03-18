@@ -10,7 +10,9 @@ import com.tom.algafoodapi.infrastructure.dto.CozinhaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CozinhaService {
@@ -33,10 +35,10 @@ public class CozinhaService {
             this.cozinhaRepository.deleteById(cozinhaId);
         } catch (EmptyResultDataAccessException e) {
             // TODO: handle exception
-            throw new EntidadeNaoEncontradaException(
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName()));
         } catch (DataIntegrityViolationException e) {
-            throw new EntidadeEmUsoException(StringUtils.entityLinked(Cozinha.class.getSimpleName()));
+            throw new ResponseStatusException(HttpStatus.CONFLICT,StringUtils.entityLinked(Cozinha.class.getSimpleName()));
         }
     }
 }

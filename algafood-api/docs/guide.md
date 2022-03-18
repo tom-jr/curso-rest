@@ -79,7 +79,9 @@ Column, JoinColum e o nullable
 
 # Mod004 Tratamento e Modelagem de erro
 
-[commit mod6-001](/docs/module-0/arq-01.md) - Anotação ResponseStatus
+[commit mod6-001](/algafood-api/docs/module-06/arq-01.md) - Anotação ResponseStatus
+
+[commit mod6-002](/algafood-api/docs/module-06/arq-02.md) - Exceções ResponseStatusException
 
 
 
