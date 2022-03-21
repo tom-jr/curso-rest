@@ -1,9 +1,7 @@
 package com.tom.algafoodapi.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.tom.algafoodapi.common.utils.StringUtils;
 import com.tom.algafoodapi.domain.model.Cozinha;
 import com.tom.algafoodapi.infrastructure.dto.CozinhaDTO;
 import com.tom.algafoodapi.services.CozinhaService;
@@ -11,16 +9,15 @@ import com.tom.algafoodapi.services.CozinhaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(value = "/cozinhas")
@@ -35,13 +32,8 @@ public class CozinhaController {
     }
 
     @GetMapping(value = "/{cozinhaId}")
-    public ResponseEntity<?> findById(@PathVariable Long cozinhaId) {
-        Optional<Cozinha> cozinha = this.cozinhaService.getRepository().findById(cozinhaId);
-        if (cozinha.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName()));
-        }
-        return ResponseEntity.ok(cozinha);
+    public Cozinha findById(@PathVariable Long cozinhaId) {
+        return this.cozinhaService.findById(cozinhaId);
     }
 
     @PostMapping
@@ -50,22 +42,18 @@ public class CozinhaController {
     }
 
     @PutMapping(value = "/{cozinhaId}")
-    public ResponseEntity<?> update(@PathVariable Long cozinhaId, @RequestBody CozinhaDTO dto) {
+    public Cozinha update(@PathVariable Long cozinhaId, @RequestBody CozinhaDTO dto) {
         // TODO: process PUT request
-        Optional<Cozinha> cozinha = this.cozinhaService.getRepository().findById(cozinhaId);
-        if (cozinha.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName()));
-        }
-        BeanUtils.copyProperties(dto, cozinha.get(), "id");
+        Cozinha cozinha = this.cozinhaService.findById(cozinhaId);
+        BeanUtils.copyProperties(dto, cozinha, "id");
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.cozinhaService.getRepository().save(cozinha.get()));
+        return cozinhaService.getRepository().save(cozinha);
     }
 
     @DeleteMapping(value = "/{cozinhaId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long cozinhaId) {
-      
+
         this.cozinhaService.delete(cozinhaId);
     }
 }

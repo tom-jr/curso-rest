@@ -83,6 +83,9 @@ Column, JoinColum e o nullable
 
 [commit mod6-002](/algafood-api/docs/module-06/arq-02.md) - Exceções ResponseStatusException
 
+[commit mod6-003](/algafood-api/docs/module-06/arq-03.md) - Refatorando com orElseThrow()
+
+
 
 
 

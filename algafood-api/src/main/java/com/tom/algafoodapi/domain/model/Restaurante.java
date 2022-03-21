@@ -22,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Restaurante {
 
@@ -53,16 +57,6 @@ public class Restaurante {
 
     // constructor
 
-    public Restaurante(Long id, String nome, BigDecimal taxaFrete, LocalDateTime dataCriacao,
-            LocalDateTime dataAtualizacao, Endereco endereco, Cozinha cozinha) {
-        this.id = id;
-        this.nome = nome;
-        this.taxaFrete = taxaFrete;
-        this.dataCriacao = dataCriacao;
-        this.dataAtualizacao = dataAtualizacao;
-        this.endereco = endereco;
-        this.cozinha = cozinha;
-    }
 
     // embedded
 

@@ -7,7 +7,6 @@ import com.tom.algafoodapi.common.utils.StringUtils;
 import com.tom.algafoodapi.domain.model.Cozinha;
 import com.tom.algafoodapi.domain.model.Restaurante;
 import com.tom.algafoodapi.infrastructure.dto.RestauranteDTO;
-import com.tom.algafoodapi.infrastructure.specs.RestauranteSpecs;
 import com.tom.algafoodapi.services.CozinhaService;
 import com.tom.algafoodapi.services.RestauranteService;
 
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -39,70 +39,33 @@ public class RestauranteController {
     }
 
     @GetMapping(value = "/{restauranteId}")
-    public ResponseEntity<?> findById(@PathVariable Long restauranteId) {
+    public Restaurante findById(@PathVariable Long restauranteId) {
 
-        Optional<Restaurante> restaurante = this.restauranteService.getRepository().findById(restauranteId);
-        if (restaurante.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(restauranteId, Restaurante.class.getSimpleName()));
-        }
-        return ResponseEntity.ok(restaurante);
+        return this.restauranteService.findById(restauranteId);
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody RestauranteDTO dto) {
+    public Restaurante add(@RequestBody RestauranteDTO dto) throws Exception {
         // TODO: process POST request
-
-        try {
-            Restaurante restaurante = this.restauranteService.add(dto);
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(this.restauranteService.getRepository().save(restaurante));
-        } catch (Exception e) {
-            // TODO: handle exception
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    StringUtils.entityNotExist(dto.getCozinha().getId(), Cozinha.class.getSimpleName()));
-        }
+       return this.restauranteService.add(new Restaurante(), dto);
 
     }
 
-    @PutMapping(value = "/{restaurantId}")
-    public ResponseEntity<?> update(@PathVariable Long restaurantId, @RequestBody RestauranteDTO dto) {
-        // TODO: process PUT request
-        Optional<Restaurante> restaurante = this.restauranteService.getRepository().findById(restaurantId);
-        Optional<Cozinha> cozinha = this.cozinhaService.getRepository().findById(dto.getCozinha().getId());
-
-        if (restaurante.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(restaurantId, Restaurante.class.getSimpleName()));
-        }
-        if (cozinha.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(dto.getCozinha().getId(), Cozinha.class.getSimpleName()));
-        }
-
-        BeanUtils.copyProperties(dto, restaurante.get(), "id","formasPagamento","endereco","produtos");
-        BeanUtils.copyProperties(dto.getCozinha(), cozinha.get(), "id");
-
-        restaurante.get().setCozinha(cozinha.get());
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(this.restauranteService.getRepository().save(restaurante.get()));
+    @PutMapping(value = "/{restauranteId}")
+    public Restaurante update(@PathVariable Long restauranteId, @RequestBody RestauranteDTO dto) throws Exception {
+        Restaurante restaurante = this.restauranteService.findById(restauranteId);
+        return this.restauranteService.add(restaurante, dto);
     }
 
-    @DeleteMapping(value = "/{restaurantId}")
-    public ResponseEntity<?> delete(@PathVariable Long restaurantId) {
+    @DeleteMapping(value = "/{restauranteId}")
+    public void delete(@PathVariable Long restauranteId) {
 
-        Optional<Restaurante> restaurante = this.restauranteService.getRepository().findById(restaurantId);
-        if (restaurante.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(restaurantId, Restaurante.class.getSimpleName()));
-        }
-
-        this.restauranteService.getRepository().delete(restaurante.get());
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        this.restauranteService.delete(restauranteId);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @GetMapping(value = "/spec")
-    public ResponseEntity<?> withFreeShip(){
-        return ResponseEntity.ok(this.restauranteService.getRepository().findAllWithFreeShip());
+    public List<Restaurante> withFreeShip(){
+        return this.restauranteService.getRepository().findAllWithFreeShip();
     }
 }

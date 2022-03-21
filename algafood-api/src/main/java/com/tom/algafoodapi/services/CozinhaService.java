@@ -1,7 +1,6 @@
 package com.tom.algafoodapi.services;
 
 import com.tom.algafoodapi.common.utils.StringUtils;
-import com.tom.algafoodapi.domain.exception.EntidadeEmUsoException;
 import com.tom.algafoodapi.domain.exception.EntidadeNaoEncontradaException;
 import com.tom.algafoodapi.domain.model.Cozinha;
 import com.tom.algafoodapi.domain.repository.CozinhaRepository;
@@ -38,7 +37,13 @@ public class CozinhaService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName()));
         } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT,StringUtils.entityLinked(Cozinha.class.getSimpleName()));
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    StringUtils.entityLinked(Cozinha.class.getSimpleName()));
         }
+    }
+
+    public Cozinha findById(Long cozinhaId) {
+        return this.getRepository().findById(cozinhaId).orElseThrow(() -> new EntidadeNaoEncontradaException(
+                StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName())));
     }
 }
