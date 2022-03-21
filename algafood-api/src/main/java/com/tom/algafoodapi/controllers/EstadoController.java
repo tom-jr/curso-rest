@@ -34,51 +34,29 @@ public class EstadoController {
     }
 
     @GetMapping(value = "/{estadoId}")
-    public ResponseEntity<?> findyById(@PathVariable Long estadoId) {
-        Optional<Estado> cidade = this.estadoService.getRepository().findById(estadoId);
-        if (cidade.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(estadoId, Estado.class.getSimpleName()));
-        }
-        return ResponseEntity.ok(cidade);
+    public Estado findyById(@PathVariable Long estadoId) {
+        return this.estadoService.findById(estadoId);
     }
 
     @PostMapping
     public ResponseEntity<?> add(@RequestBody EstadoDTO dto) {
         // TODO: process POST request
-        Estado estado = this.estadoService.add(dto);
+        Estado estado = this.estadoService.add(new Estado(), dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(this.estadoService.getRepository().save(estado));
 
     }
 
     @PutMapping(value = "/{estadoId}")
-    public ResponseEntity<?> update(@PathVariable Long estadoId, @RequestBody EstadoDTO dto) {
+    public Estado update(@PathVariable Long estadoId, @RequestBody EstadoDTO dto) {
         // TODO: process PUT request
-        Optional<Estado> estado = this.estadoService.getRepository().findById(estadoId);
-        if (estado.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(estadoId, Estado.class.getSimpleName()));
-        }
-        BeanUtils.copyProperties(dto, estado.get(), "id");
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.estadoService.getRepository().save(estado.get()));
+        Estado estado = this.estadoService.findById(estadoId);
+        estado = this.estadoService.add(estado, dto);
+        return this.estadoService.getRepository().save(estado);
     }
 
-
     @DeleteMapping(value = "/{estadoId}")
-    public ResponseEntity<?> delete(@PathVariable Long estadoId) {
-        Optional<Estado> estado = this.estadoService.getRepository().findById(estadoId);
-        if (estado.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(StringUtils.entityNotExist(estadoId, Estado.class.getSimpleName()));
-        }
-        try {
-            this.estadoService.getRepository().delete(estado.get());
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (Exception e) {
-            // TODO: handle exception
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(StringUtils.entityLinked(Estado.class.getSimpleName()));
-        }
+    public void delete(@PathVariable Long estadoId) {
+        this.estadoService.delete(estadoId);
+        
     }
 }

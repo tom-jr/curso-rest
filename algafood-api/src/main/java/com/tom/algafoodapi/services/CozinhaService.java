@@ -1,7 +1,9 @@
 package com.tom.algafoodapi.services;
 
 import com.tom.algafoodapi.common.utils.StringUtils;
-import com.tom.algafoodapi.domain.exception.EntidadeNaoEncontradaException;
+import com.tom.algafoodapi.domain.exception.CozinhaNaoEncontradaException;
+import com.tom.algafoodapi.domain.exception.EntityInUseException;
+import com.tom.algafoodapi.domain.exception.EntityNotFoundException;
 import com.tom.algafoodapi.domain.model.Cozinha;
 import com.tom.algafoodapi.domain.repository.CozinhaRepository;
 import com.tom.algafoodapi.infrastructure.dto.CozinhaDTO;
@@ -9,9 +11,7 @@ import com.tom.algafoodapi.infrastructure.dto.CozinhaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CozinhaService {
@@ -34,16 +34,16 @@ public class CozinhaService {
             this.cozinhaRepository.deleteById(cozinhaId);
         } catch (EmptyResultDataAccessException e) {
             // TODO: handle exception
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+            throw new CozinhaNaoEncontradaException(
                     StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName()));
         } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT,
+            throw new EntityInUseException(
                     StringUtils.entityLinked(Cozinha.class.getSimpleName()));
         }
     }
 
     public Cozinha findById(Long cozinhaId) {
-        return this.getRepository().findById(cozinhaId).orElseThrow(() -> new EntidadeNaoEncontradaException(
+        return this.getRepository().findById(cozinhaId).orElseThrow(() -> new CozinhaNaoEncontradaException(
                 StringUtils.entityNotExist(cozinhaId, Cozinha.class.getSimpleName())));
     }
 }

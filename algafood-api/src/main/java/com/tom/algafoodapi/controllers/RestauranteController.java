@@ -1,19 +1,13 @@
 package com.tom.algafoodapi.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.tom.algafoodapi.common.utils.StringUtils;
-import com.tom.algafoodapi.domain.model.Cozinha;
 import com.tom.algafoodapi.domain.model.Restaurante;
 import com.tom.algafoodapi.infrastructure.dto.RestauranteDTO;
-import com.tom.algafoodapi.services.CozinhaService;
 import com.tom.algafoodapi.services.RestauranteService;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestauranteController {
     @Autowired
     private RestauranteService restauranteService;
-    @Autowired
-    private CozinhaService cozinhaService;
 
     @GetMapping()
     public List<Restaurante> listar() {
@@ -47,7 +39,7 @@ public class RestauranteController {
     @PostMapping
     public Restaurante add(@RequestBody RestauranteDTO dto) throws Exception {
         // TODO: process POST request
-       return this.restauranteService.add(new Restaurante(), dto);
+        return this.restauranteService.add(new Restaurante(), dto);
 
     }
 
@@ -65,7 +57,7 @@ public class RestauranteController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @GetMapping(value = "/spec")
-    public List<Restaurante> withFreeShip(){
+    public List<Restaurante> withFreeShip() {
         return this.restauranteService.getRepository().findAllWithFreeShip();
     }
 }

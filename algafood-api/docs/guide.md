@@ -85,6 +85,9 @@ Column, JoinColum e o nullable
 
 [commit mod6-003](/algafood-api/docs/module-06/arq-03.md) - Refatorando com orElseThrow()
 
+[commit mod6-004](/algafood-api/docs/module-06/arq-04.md) - Utilizando ExceptionHandler
+
+
 
 
 

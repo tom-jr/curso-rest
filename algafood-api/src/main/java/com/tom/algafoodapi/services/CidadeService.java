@@ -1,8 +1,9 @@
 package com.tom.algafoodapi.services;
 
 import com.tom.algafoodapi.common.utils.StringUtils;
-import com.tom.algafoodapi.domain.exception.EntidadeEmUsoException;
-import com.tom.algafoodapi.domain.exception.EntidadeNaoEncontradaException;
+import com.tom.algafoodapi.domain.exception.CidadeNaoEncontradaException;
+import com.tom.algafoodapi.domain.exception.EntityInUseException;
+import com.tom.algafoodapi.domain.exception.EstadoNaoEncontradaException;
 import com.tom.algafoodapi.domain.exception.GeneralException;
 import com.tom.algafoodapi.domain.model.Cidade;
 import com.tom.algafoodapi.domain.model.Estado;
@@ -33,15 +34,16 @@ public class CidadeService {
                     .estado(estado).build();
 
             return this.getRepository().save(cidade);
-        } catch (EntidadeNaoEncontradaException e) {
+        } catch (EstadoNaoEncontradaException e) {
             // TODO: handle exception
-            throw new GeneralException(e.getMessage());
+            throw new GeneralException(
+                    StringUtils.entityNotExist(dto.getEstado().getId(), Estado.class.getSimpleName()));
         }
 
     }
 
     public Cidade findById(Long cidadeId) {
-        return this.getRepository().findById(cidadeId).orElseThrow(() -> new EntidadeNaoEncontradaException(
+        return this.getRepository().findById(cidadeId).orElseThrow(() -> new CidadeNaoEncontradaException(
                 StringUtils.entityNotExist(cidadeId, Cidade.class.getSimpleName())));
     }
 
@@ -52,7 +54,7 @@ public class CidadeService {
             this.getRepository().delete(cidade);
         } catch (DataIntegrityViolationException e) {
             // TODO: handle exception
-            throw new EntidadeEmUsoException(StringUtils.entityLinked(Cidade.class.getSimpleName()));
+            throw new EntityInUseException(StringUtils.entityLinked(Cidade.class.getSimpleName()));
         }
     }
 
