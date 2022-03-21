@@ -39,5 +39,33 @@ public class ApiExceptionHandler {
 }
 ~~~
 
+A class advice também pode extender de **ResponseEntityExceptionHandler** o mesmo captura
+alguns erros corriqueiros em um sistema. Podemos também sobrescrever os métodos para 
+customizar ainda mais as respostas.
+todos os métodosHandler criados podem retorna um handleExceptionInternal, que é um método
+reescrito do **ResponseEntityExceptionHandler**
 ~~~java
+ @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<?> entityNotFoundHandlerMethod(EntityNotFoundException e, WebRequest request) {
+        return this.handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @Override
+    protected ResponseEntity<?> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
+            HttpStatus status, WebRequest request) {
+        // TODO Auto-generated method stub
+        if (body == null) {
+            body = StandardError.builder()
+                    .dateTime(LocalDateTime.now())
+                    .message(status.getReasonPhrase())
+                    .build();
+        } else if (body instanceof String) {
+            body = StandardError.builder()
+                    .dateTime(LocalDateTime.now())
+                    .message((String) body)
+                    .build();
+        }
+
+        return super.handleExceptionInternal(ex, body, headers, status, request);
+    }
 ~~~
