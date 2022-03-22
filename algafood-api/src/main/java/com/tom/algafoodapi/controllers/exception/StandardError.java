@@ -1,7 +1,5 @@
 package com.tom.algafoodapi.controllers.exception;
 
-import java.time.LocalDateTime;
-
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,7 +7,11 @@ import lombok.Getter;
 @Builder
 public class StandardError {
     
-    private LocalDateTime dateTime;
+    private Integer status;
 
-    private String message;
+    private String type;
+
+    private String title;
+
+    private String detail;
 }
