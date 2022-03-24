@@ -37,14 +37,12 @@ public class CidadeController {
 
     @PostMapping
     public Cidade add(@RequestBody CidadeDAO dto) throws Exception {
-        // TODO: process POST request
 
         return this.cidadeService.add(new Cidade(), dto);
     }
 
     @PutMapping(value = "/{cidadeId}")
     public Cidade update(@RequestBody CidadeDAO dto, @PathVariable Long cidadeId) throws Exception {
-        // TODO: process PUT request
         Cidade cidade = this.cidadeService.findById(cidadeId);
         return this.cidadeService.add(cidade, dto);
     }

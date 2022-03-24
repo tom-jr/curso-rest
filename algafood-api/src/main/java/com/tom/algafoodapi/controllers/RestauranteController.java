@@ -38,7 +38,6 @@ public class RestauranteController {
 
     @PostMapping
     public Restaurante add(@RequestBody RestauranteDTO dto) throws Exception {
-        // TODO: process POST request
         return this.restauranteService.add(new Restaurante(), dto);
 
     }

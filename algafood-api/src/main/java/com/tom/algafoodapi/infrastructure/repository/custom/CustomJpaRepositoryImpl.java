@@ -15,13 +15,11 @@ public class CustomJpaRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID> i
 
     public CustomJpaRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);
-        // TODO Auto-generated constructor stub
         this.entityManager = entityManager;
     }
 
     @Override
     public Optional<T> buscarPrimeiro() {
-        // TODO Auto-generated method stub
         String jpql = String.format("FROM %s", this.getDomainClass().getName());
         T t = entityManager.createQuery(jpql, this.getDomainClass())
                 .setMaxResults(1)

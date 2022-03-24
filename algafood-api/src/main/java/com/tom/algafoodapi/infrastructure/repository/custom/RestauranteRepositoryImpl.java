@@ -19,7 +19,6 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryCustom {
 
     @Override
     public List<Restaurante> findAllWithFreeShip() {
-        // TODO Auto-generated method stub
         return this.restauranteRepository.findAll(RestauranteSpecs.withFreeShip());
     }
     

@@ -1,14 +1,11 @@
 package com.tom.algafoodapi.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.tom.algafoodapi.common.utils.StringUtils;
 import com.tom.algafoodapi.domain.model.Estado;
 import com.tom.algafoodapi.infrastructure.dto.EstadoDTO;
 import com.tom.algafoodapi.services.EstadoService;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,13 +31,12 @@ public class EstadoController {
     }
 
     @GetMapping(value = "/{estadoId}")
-    public Estado findyById(@PathVariable Long estadoId) {
+    public Estado findById(@PathVariable Long estadoId) {
         return this.estadoService.findById(estadoId);
     }
 
     @PostMapping
     public ResponseEntity<?> add(@RequestBody EstadoDTO dto) {
-        // TODO: process POST request
         Estado estado = this.estadoService.add(new Estado(), dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(this.estadoService.getRepository().save(estado));
 
@@ -48,7 +44,6 @@ public class EstadoController {
 
     @PutMapping(value = "/{estadoId}")
     public Estado update(@PathVariable Long estadoId, @RequestBody EstadoDTO dto) {
-        // TODO: process PUT request
         Estado estado = this.estadoService.findById(estadoId);
         estado = this.estadoService.add(estado, dto);
         return this.estadoService.getRepository().save(estado);

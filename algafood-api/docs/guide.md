@@ -69,7 +69,7 @@ Column, JoinColum e o nullable
 [commit mod4-009](/algafood-api/docs/module-04/arq-09.md) - Relacionamentos entre entidades
 
 
-# Mod003 Pool Conexões e Flyaway
+# Mod005 Pool Conexões e Flyaway
 
 [commit mod5-001](/algafood-api/docs/module-05/arq-01.md) - Entendendo Pool
 
@@ -77,7 +77,7 @@ Column, JoinColum e o nullable
 
 [commit mod5-003](/algafood-api/docs/module-05/arq-03.md) - adição de dados para testes com Flyaway
 
-# Mod004 Tratamento e Modelagem de erro
+# Mod006 Tratamento e Modelagem de erro
 
 [commit mod6-001](/algafood-api/docs/module-06/arq-01.md) - Anotação ResponseStatus
 
@@ -88,6 +88,11 @@ Column, JoinColum e o nullable
 [commit mod6-004](/algafood-api/docs/module-06/arq-04.md) - Utilizando ExceptionHandler
 
 [commit mod6-005](/algafood-api/docs/module-06/arq-05.md) - Utilizando Especificações de respostas de Erro
+
+# Mod007 Validações com Bean Validation
+
+[commit mod7-001](/algafood-api/docs/module-07/arq-01.md) - Adicionando constraints e validando no controller com @Valid
+
 
 
 

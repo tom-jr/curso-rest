@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -57,44 +58,42 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @Override
-	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		Throwable rootCause = ExceptionUtils.getRootCause(ex);
-		
-		if (rootCause instanceof InvalidFormatException) {
-			return this.handleInvalidFormatException((InvalidFormatException) rootCause, headers, status, request);
-		}
-		
-		EnumErrorType erroType = EnumErrorType.INVALIDE_FIELD;
-		String detail = "O corpo da requisição está inválido. Verifique erro de sintaxe.";
-		
-		StandardError error = this.factoryErrorStandard(status, erroType, detail).build();
-		
-		return handleExceptionInternal(ex, error, headers, status, request);
-	}
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
+        Throwable rootCause = ExceptionUtils.getRootCause(ex);
+
+        if (rootCause instanceof InvalidFormatException) {
+            return this.handleInvalidFormatException((InvalidFormatException) rootCause, headers, status, request);
+        }
+
+        EnumErrorType erroType = EnumErrorType.INVALIDE_FIELD;
+        String detail = "O corpo da requisição está inválido. Verifique erro de sintaxe.";
+
+        StandardError error = this.factoryErrorStandard(status, erroType, detail).build();
+
+        return handleExceptionInternal(ex, error, headers, status, request);
+    }
 
     private ResponseEntity<Object> handleInvalidFormatException(InvalidFormatException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-		String path = ex.getPath().stream()
-				.map(ref -> ref.getFieldName())
-				.collect(Collectors.joining("."));
-		
-		EnumErrorType errorType = EnumErrorType.INVALIDE_FIELD;
-		String detail = String.format("A propriedade '%s' recebeu o valor '%s', "
-				+ "que é de um tipo inválido. Corrija e informe um valor compatível com o tipo %s.",
-				path, ex.getValue(), ex.getTargetType().getSimpleName());
-		
-		StandardError error = this.factoryErrorStandard(status, errorType, detail).build();
-		
-		return handleExceptionInternal(ex, error, headers, status, request);
-	}
-    
+        String path = ex.getPath().stream()
+                .map(ref -> ref.getFieldName())
+                .collect(Collectors.joining("."));
+
+        EnumErrorType errorType = EnumErrorType.INVALIDE_FIELD;
+        String detail = String.format("A propriedade '%s' recebeu o valor '%s', "
+                + "que é de um tipo inválido. Corrija e informe um valor compatível com o tipo %s.",
+                path, ex.getValue(), ex.getTargetType().getSimpleName());
+
+        StandardError error = this.factoryErrorStandard(status, errorType, detail).build();
+
+        return handleExceptionInternal(ex, error, headers, status, request);
+    }
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
-        // TODO Auto-generated method stub
         if (body == null) {
             body = StandardError.builder()
                     .title(status.getReasonPhrase())
@@ -117,5 +116,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .type(errorType.getUri())
                 .title(errorType.getTitle())
                 .detail(detail);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        EnumErrorType errorType = EnumErrorType.INVALIDE_DATA;
+        String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
+
+        StandardError error = this.factoryErrorStandard(status, errorType, detail).userMenssage(detail).build();
+        return handleExceptionInternal(ex, error, headers, status, request);
     }
 }

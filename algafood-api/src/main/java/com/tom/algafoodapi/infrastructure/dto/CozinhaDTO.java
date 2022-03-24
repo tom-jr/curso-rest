@@ -1,5 +1,7 @@
 package com.tom.algafoodapi.infrastructure.dto;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +13,7 @@ public class CozinhaDTO {
     
     private Long id;
 
+    @NotNull
     private String nome;
     
 }

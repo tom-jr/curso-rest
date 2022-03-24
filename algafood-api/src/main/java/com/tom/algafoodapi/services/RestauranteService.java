@@ -27,7 +27,6 @@ public class RestauranteService {
         try {
             cozinha = this.cozinhaService.findById(dto.getCozinha().getId());
         } catch (CozinhaNaoEncontradaException e) {
-            // TODO: handle exception
             throw new GeneralException(e.getMessage());
         }
 
@@ -53,7 +52,6 @@ public class RestauranteService {
         try {
             this.getRepository().delete(restaurante);
         } catch (DataIntegrityViolationException e) {
-            // TODO: handle exception
             throw new EntityInUseException(StringUtils.entityLinked(restaurante.getClass().getSimpleName()));
         }
     }

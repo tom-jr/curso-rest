@@ -1,6 +1,5 @@
 package com.tom.algafoodapi.services;
 
-import com.tom.algafoodapi.domain.model.Permissao;
 import com.tom.algafoodapi.domain.repository.PermissaoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

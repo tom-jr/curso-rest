@@ -35,7 +35,6 @@ public class CidadeService {
 
             return this.getRepository().save(cidade);
         } catch (EstadoNaoEncontradaException e) {
-            // TODO: handle exception
             throw new GeneralException(
                     StringUtils.entityNotExist(dto.getEstado().getId(), Estado.class.getSimpleName()));
         }
@@ -53,7 +52,6 @@ public class CidadeService {
         try {
             this.getRepository().delete(cidade);
         } catch (DataIntegrityViolationException e) {
-            // TODO: handle exception
             throw new EntityInUseException(StringUtils.entityLinked(Cidade.class.getSimpleName()));
         }
     }

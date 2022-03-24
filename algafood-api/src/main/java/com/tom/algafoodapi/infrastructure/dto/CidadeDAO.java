@@ -1,7 +1,5 @@
 package com.tom.algafoodapi.infrastructure.dto;
 
-import com.tom.algafoodapi.domain.model.Estado;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

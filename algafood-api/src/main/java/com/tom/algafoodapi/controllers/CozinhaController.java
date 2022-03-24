@@ -2,6 +2,8 @@ package com.tom.algafoodapi.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.tom.algafoodapi.domain.model.Cozinha;
 import com.tom.algafoodapi.infrastructure.dto.CozinhaDTO;
 import com.tom.algafoodapi.services.CozinhaService;
@@ -37,13 +39,12 @@ public class CozinhaController {
     }
 
     @PostMapping
-    public Cozinha adicionar(@RequestBody CozinhaDTO dto) {
+    public Cozinha adicionar(@RequestBody @Valid CozinhaDTO dto) {
         return this.cozinhaService.adicionar(dto);
     }
 
     @PutMapping(value = "/{cozinhaId}")
     public Cozinha update(@PathVariable Long cozinhaId, @RequestBody CozinhaDTO dto) {
-        // TODO: process PUT request
         Cozinha cozinha = this.cozinhaService.findById(cozinhaId);
         BeanUtils.copyProperties(dto, cozinha, "id");
 

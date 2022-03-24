@@ -29,7 +29,6 @@ public class Cozinha {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-    
     @Column(name = "nome")
     private String nome;
 

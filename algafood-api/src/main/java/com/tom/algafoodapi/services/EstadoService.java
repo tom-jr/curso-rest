@@ -39,7 +39,6 @@ public class EstadoService {
             this.getRepository().delete(estado);
 
         } catch (DataIntegrityViolationException e) {
-            // TODO: handle exception
             throw new EntityInUseException(StringUtils.entityLinked(Estado.class.getSimpleName()));
         }
     }
