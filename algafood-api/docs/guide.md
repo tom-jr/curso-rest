@@ -93,6 +93,9 @@ Column, JoinColum e o nullable
 
 [commit mod7-001](/algafood-api/docs/module-07/arq-01.md) - Adicionando constraints e validando no controller com @Valid
 
+[commit mod7-002](/algafood-api/docs/module-07/arq-02.md) - Validando em cascade
+
+
 
 
 

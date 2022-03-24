@@ -1,5 +1,6 @@
 package com.tom.algafoodapi.controllers.exception;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
@@ -9,10 +10,12 @@ import com.tom.algafoodapi.domain.exception.EntityNotFoundException;
 import com.tom.algafoodapi.domain.exception.GeneralException;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -125,7 +128,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         EnumErrorType errorType = EnumErrorType.INVALIDE_DATA;
         String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
 
-        StandardError error = this.factoryErrorStandard(status, errorType, detail).userMenssage(detail).build();
+        BindingResult bindingResult = ex.getBindingResult();
+        List<StandardError.Field> errorFields = bindingResult.getFieldErrors().stream()
+                .map(fieldError -> StandardError.Field.builder()
+                        .name(fieldError.getField())
+                        .userMessage(fieldError.getDefaultMessage())
+                        .build())
+                .collect(Collectors.toList());
+
+        StandardError error = this.factoryErrorStandard(status, errorType, detail).userMenssage(detail)
+                .fields(errorFields)
+                .build();
         return handleExceptionInternal(ex, error, headers, status, request);
     }
 }

@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CozinhaDTO {
     
+    @NotNull
     private Long id;
 
     @NotNull

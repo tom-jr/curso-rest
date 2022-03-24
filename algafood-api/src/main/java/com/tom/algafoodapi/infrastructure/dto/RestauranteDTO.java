@@ -2,6 +2,9 @@ package com.tom.algafoodapi.infrastructure.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +23,7 @@ public class RestauranteDTO {
     private BigDecimal taxaFrete;
 
     //relations
+    @NotNull
+    @Valid
     private CozinhaDTO cozinha;
 }

@@ -2,6 +2,8 @@ package com.tom.algafoodapi.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.tom.algafoodapi.domain.model.Restaurante;
 import com.tom.algafoodapi.infrastructure.dto.RestauranteDTO;
 import com.tom.algafoodapi.services.RestauranteService;
@@ -37,7 +39,7 @@ public class RestauranteController {
     }
 
     @PostMapping
-    public Restaurante add(@RequestBody RestauranteDTO dto) throws Exception {
+    public Restaurante add(@RequestBody @Valid RestauranteDTO dto) throws Exception {
         return this.restauranteService.add(new Restaurante(), dto);
 
     }
