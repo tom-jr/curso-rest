@@ -2,6 +2,8 @@ package com.tom.algafoodapi.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.tom.algafoodapi.domain.model.Cidade;
 import com.tom.algafoodapi.infrastructure.dto.CidadeDAO;
 import com.tom.algafoodapi.services.CidadeService;
@@ -36,13 +38,13 @@ public class CidadeController {
     }
 
     @PostMapping
-    public Cidade add(@RequestBody CidadeDAO dto) throws Exception {
+    public Cidade add(@RequestBody @Valid CidadeDAO dto) throws Exception {
 
         return this.cidadeService.add(new Cidade(), dto);
     }
 
     @PutMapping(value = "/{cidadeId}")
-    public Cidade update(@RequestBody CidadeDAO dto, @PathVariable Long cidadeId) throws Exception {
+    public Cidade update(@RequestBody @Valid CidadeDAO dto, @PathVariable Long cidadeId) throws Exception {
         Cidade cidade = this.cidadeService.findById(cidadeId);
         return this.cidadeService.add(cidade, dto);
     }

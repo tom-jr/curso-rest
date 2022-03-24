@@ -10,7 +10,6 @@ import com.tom.algafoodapi.domain.exception.EntityNotFoundException;
 import com.tom.algafoodapi.domain.exception.GeneralException;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

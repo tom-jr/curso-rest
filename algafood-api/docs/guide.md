@@ -95,6 +95,10 @@ Column, JoinColum e o nullable
 
 [commit mod7-002](/algafood-api/docs/module-07/arq-02.md) - Validando em cascade
 
+[commit mod7-003](/algafood-api/docs/module-07/arq-03.md) - Agrupamento de Validação
+
+
+
 
 
 

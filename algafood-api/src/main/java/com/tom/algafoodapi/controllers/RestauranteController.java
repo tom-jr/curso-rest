@@ -45,7 +45,7 @@ public class RestauranteController {
     }
 
     @PutMapping(value = "/{restauranteId}")
-    public Restaurante update(@PathVariable Long restauranteId, @RequestBody RestauranteDTO dto) throws Exception {
+    public Restaurante update(@PathVariable Long restauranteId, @RequestBody @Valid RestauranteDTO dto) throws Exception {
         Restaurante restaurante = this.restauranteService.findById(restauranteId);
         return this.restauranteService.add(restaurante, dto);
     }

@@ -2,6 +2,8 @@ package com.tom.algafoodapi.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.tom.algafoodapi.domain.model.Estado;
 import com.tom.algafoodapi.infrastructure.dto.EstadoDTO;
 import com.tom.algafoodapi.services.EstadoService;
@@ -36,14 +38,14 @@ public class EstadoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody EstadoDTO dto) {
+    public ResponseEntity<?> add(@RequestBody @Valid EstadoDTO dto) {
         Estado estado = this.estadoService.add(new Estado(), dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(this.estadoService.getRepository().save(estado));
 
     }
 
     @PutMapping(value = "/{estadoId}")
-    public Estado update(@PathVariable Long estadoId, @RequestBody EstadoDTO dto) {
+    public Estado update(@PathVariable Long estadoId, @RequestBody @Valid EstadoDTO dto) {
         Estado estado = this.estadoService.findById(estadoId);
         estado = this.estadoService.add(estado, dto);
         return this.estadoService.getRepository().save(estado);

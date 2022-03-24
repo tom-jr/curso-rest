@@ -16,9 +16,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tom.algafoodapi.controllers.validation_groups.Groups;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -43,6 +44,7 @@ public class Restaurante {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(groups = Groups.CozinhaId.class)
     private String nome;
 
     @Column(name = "taxa_frete")
