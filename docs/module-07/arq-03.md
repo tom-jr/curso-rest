@@ -48,3 +48,30 @@ public class Entity2{
 private Long id;
 }
 ~~~
+
+É possível adicionar nas Anotações das validações o valor de 
+message para que o retorno do erro de validação apresente a mensagem
+especificada na anotação
+Ex:
+~~~ java 
+@NotNull(message = "O campo não pode ser null")
+@NotBlank(message = "O campo não pode ser vazio")
+
+~~~
+
+Outra forma de se realizar a personalização da mensagem é criando um arquivo
+de properties.
+No diretório de resources criamos um arquivo com o mome especificadamente de
+***message.properties***
+
+Nele informamos o  nome da anotação de validação e passamos a mensagem  
+~~~ properties
+NotBlank={0} é obrigatório  # o parâmetro 0 é o nome da propriedade que a NotBlank foi definida
+nome = Nome # substituindo o valor do nome da propriedade
+propriedade.nome= Nome da propriedade # caso exista uma property menos abstrata(mais complexa). O Spring usará a mais complexa
+~~~
+
+~~~ java
+
+
+~~~
