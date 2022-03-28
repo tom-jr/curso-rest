@@ -8,7 +8,7 @@ import com.tom.algafoodapi.domain.exception.GeneralException;
 import com.tom.algafoodapi.domain.model.Cidade;
 import com.tom.algafoodapi.domain.model.Estado;
 import com.tom.algafoodapi.domain.repository.CidadeRepository;
-import com.tom.algafoodapi.infrastructure.dto.CidadeDAO;
+import com.tom.algafoodapi.infrastructure.dto.CidadeDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -26,7 +26,7 @@ public class CidadeService {
         return cidadeRepository;
     }
 
-    public Cidade add(Cidade cidade, CidadeDAO dto) throws Exception {
+    public Cidade add(Cidade cidade, CidadeDTO dto) throws Exception {
         try {
             Estado estado = this.estadoService.findById(dto.getEstado().getId());
             cidade = Cidade.builder().nome(dto.getNome())

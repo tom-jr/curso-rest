@@ -70,8 +70,10 @@ NotBlank={0} é obrigatório  # o parâmetro 0 é o nome da propriedade que a No
 nome = Nome # substituindo o valor do nome da propriedade
 propriedade.nome= Nome da propriedade # caso exista uma property menos abstrata(mais complexa). O Spring usará a mais complexa
 ~~~
-
+ Para que funcione. No método onde adicionamos os fields errors ao invés de adicionarmos default
+ Criamos uma string que recebe o retorno de messageSource.getMessage que tem de parâmetro o 
+ fieldErro e o Locale da lingua. Assim o field é substituído pelo definido na ***messages.properties***
 ~~~ java
-
+ String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 
 ~~~

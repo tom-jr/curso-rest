@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CidadeDAO {
+public class CidadeDTO {
 
     private Long id;
 
