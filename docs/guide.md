@@ -97,6 +97,9 @@ Column, JoinColum e o nullable
 
 [commit mod7-003](/docs/module-07/arq-03.md) - Agrupamento de Validação
 
+[commit mod7-003](/docs/module-07/arq-04.md) - Estendendo o Problem Details getFieldErros
+
+
 
 
 

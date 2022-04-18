@@ -10,6 +10,7 @@ import com.tom.algafoodapi.domain.exception.EntityNotFoundException;
 import com.tom.algafoodapi.domain.exception.GeneralException;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -17,11 +18,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -37,9 +38,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         EnumErrorType errorType = EnumErrorType.ENTITY_NOT_FOUND;
         String detail = e.getMessage();
 
-        StandardError error = this.factoryErrorStandard(status, errorType, detail).build();
+        StandardError errorBody = this.factoryErrorStandard(status, errorType, detail).build();
 
-        return this.handleExceptionInternal(e, error, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        return this.handleExceptionInternal(e, errorBody, new HttpHeaders(), status, request);
     }
 
     @ExceptionHandler(EntityInUseException.class)
@@ -100,6 +101,63 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        EnumErrorType errorType = EnumErrorType.INVALIDE_DATA;
+        String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
+
+        // BindingResult bindingResult = ex.getBindingResult();
+        List<StandardError.Field> errorFields = ex.getBindingResult().getFieldErrors().stream()
+                .map(fieldError -> {
+                    String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+                    System.out.println(message);
+                    return StandardError.Field.builder()
+                            .name(fieldError.getField())
+                            .userMessage(message)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        StandardError error = this.factoryErrorStandard(status, errorType, detail).userMenssage(detail)
+                .fields(errorFields)
+                .build();
+        return handleExceptionInternal(ex, error, headers, status, request);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers,
+            HttpStatus status, WebRequest request) {
+        if(ex instanceof MethodArgumentTypeMismatchException){
+            return this.handleMethodArgumentTypeMismatchException((MethodArgumentTypeMismatchException) ex, headers, status, request);
+        }
+        return ResponseEntity.ok(null);
+    }
+
+    public ResponseEntity<Object> handleMethodArgumentTypeMismatchException (MethodArgumentTypeMismatchException ex,HttpHeaders headers, HttpStatus status, WebRequest request){
+        EnumErrorType errorType = EnumErrorType.INVALIDE_FIELD;
+
+        String detail = String.format("O parâmetro de URL '%s' recebeu o valor '%s', "
+        + "que é de um tipo inválido. Corrija e informe um valor compatível com o tipo %s.",
+        ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());
+
+
+        // return ResponseEntity.ok(detail);
+       StandardError body = this.factoryErrorStandard(status, errorType, detail).build();
+        return this.handleExceptionInternal(ex, body, headers, status, request);
+    }
+
+
+    private StandardError.StandardErrorBuilder factoryErrorStandard(HttpStatus status, EnumErrorType errorType,
+            String detail) {
+        return StandardError.builder()
+                .status(status.value())
+                .type(errorType.getUri())
+                .title(errorType.getTitle())
+                .detail(detail);
+    }
+
+    @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
         if (body == null) {
@@ -117,37 +175,4 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, body, headers, status, request);
     }
 
-    private StandardError.StandardErrorBuilder factoryErrorStandard(HttpStatus status, EnumErrorType errorType,
-            String detail) {
-        return StandardError.builder()
-                .status(status.value())
-                .type(errorType.getUri())
-                .title(errorType.getTitle())
-                .detail(detail);
-    }
-
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-            HttpHeaders headers, HttpStatus status, WebRequest request) {
-
-        EnumErrorType errorType = EnumErrorType.INVALIDE_DATA;
-        String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
-
-        BindingResult bindingResult = ex.getBindingResult();
-        List<StandardError.Field> errorFields = bindingResult.getFieldErrors().stream()
-                .map(fieldError -> {
-                    String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-                    System.out.println(message);
-                    return StandardError.Field.builder()
-                            .name(fieldError.getField())
-                            .userMessage(message)
-                            .build();
-                })
-                .collect(Collectors.toList());
-
-        StandardError error = this.factoryErrorStandard(status, errorType, detail).userMenssage(detail)
-                .fields(errorFields)
-                .build();
-        return handleExceptionInternal(ex, error, headers, status, request);
-    }
 }

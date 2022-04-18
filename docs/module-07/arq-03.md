@@ -2,11 +2,12 @@
 
 Para que uma validação de um determinado fluxo não 
 atrapalhe a outra existe os Groups, voce pode validar
-atributos baseado em seu Group assim tal validação so
+atributos baseado em seu Group, assim tal validação so
 acontecera caso ao invés de esta o @Valid, esteja o 
 @Validate(Group.Nome)
 
 Ex:
+criamos uma interface Groups e criamos um Group para quando realizamos um POST
 ~~~ java
 
 public interface Groups {
@@ -14,6 +15,12 @@ public interface Groups {
     public interface PostEntity;
 }
 ~~~
+Então, quando chamar a validação no método post, ao invés de especificar a anotação
+***@Valid***, adicionamos a anotação ***@Validate(Group.Nome)***
+assim a validação vai passar na classe verificando as validações que pertencem a esse group. Então 
+na associação da class, adicionamos o @Valid e e dentro da class que é associada adicionamos as validações
+do grupo. 
+Assim a validação vai ser realizada na class e na class associada sem influenciar outras validações.
 ~~~ java
 @Entity
 public class Entity2{
@@ -27,7 +34,12 @@ Funciona igualmente para Validações cascata.
 
 Podemos também trabalhar apenas o group com a entidade
 que tem relacionamento. Assim não precisando adicionar group
-em todos os atributos de validação
+em todos os atributos de validação.
+
+Neste caso. usaremos o group apenas na class associada em sua atributo
+que precisamos validar, assim continua sendo uma validação referente apenas aquele group.
+ Para que a validação seja default em uma class e passe a verificar o group quando for
+validar a class associada utilizamos a anotação ***@ConvertGroup(from = Default.class, to = Groups.Entity2Id.class)***
 
 ~~~ java
 public class Entity{
@@ -44,7 +56,7 @@ public class Entity{
 public class Entity2{
 
 @Id
-@NotNull
+@NotNull(group = Groups.Entity2Id.class)
 private Long id;
 }
 ~~~

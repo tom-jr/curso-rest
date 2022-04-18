@@ -40,7 +40,7 @@ não satisfaça a função desejada.
 No exemplo, dependendo de qual erro disparar o status de retorno da requisição 
 sera distinta
 caso deletar: ***NO_NO_CONTENT***
-caso não existir a entidade no banco: ***NOT_NOT_FOUND***
+caso não existir a entidade no banco: ***NOT_FOUND***
 caso a entidade tenha vinculo com outra tabela : ***CONFLICT***
 ~~~ java
 public void delete(Long entityId) {

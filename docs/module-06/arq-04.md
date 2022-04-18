@@ -44,6 +44,39 @@ alguns erros corriqueiros em um sistema. Podemos também sobrescrever os método
 customizar ainda mais as respostas.
 todos os métodosHandler criados podem retorna um handleExceptionInternal, que é um método
 reescrito do **ResponseEntityExceptionHandler**
+
+A class abstrata ResponseEntityExceptionHandler ela retorna ResponseEntity de varios tipos de erros
+entre ele são:
+
+- HttpRequestMethodNotSupportedException
+- HttpMediaTypeNotSupportedException
+- HttpMediaTypeNotAcceptableException
+- MissingPathVariableException
+- MissingServletRequestParameterExceptio,
+- ServletRequestBindingException
+- ConversionNotSupportedException
+- TypeMismatchException
+- HttpMessageNotReadableException
+- HttpMessageNotWritableException
+- MethodArgumentNotValidException
+- MissingServletRequestPartException
+- BindException
+- NoHandlerFoundException
+- AsyncRequestTimeoutExceptio
+
+Todos esses erros estão em tratativa em um método que faz uso da anotação exceptionHandle
+Dependendo do instanceOf de cada error chama sua tratativa e statusHttp referente. Mas o que
+nos iremos utilizar desata class abstrata é o seu método chamado ***handleExceptionInternal***
+esse método é o retorno para qualquer um desses erros. eles são desviados para suas tratativas especificas
+e depois chama esse método para retorna como resposta de error da request.
+O esquema do fluxo desses erros
+
+![](/docs/resources/img/error_001.png)
+
+
+O **handleExceptionInternal** não retorna um body para o ResponseEntity. No nosso caso estamos utilizando corpo
+que é o StandardError. Então ao sobrescrever o método trataremos de adicionar corpo para todos os erros que tratarmos
+em nossa classe de controller advice.
 ~~~java
  @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> entityNotFoundHandlerMethod(EntityNotFoundException e, WebRequest request) {
