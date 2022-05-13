@@ -100,6 +100,7 @@ Column, JoinColum e o nullable
 [commit mod7-003](/docs/module-07/arq-04.md) - Estendendo o Problem Details getFieldErros
 
 
+# Mod008 Teste de Integração
 
 
 
